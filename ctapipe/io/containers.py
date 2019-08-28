@@ -561,6 +561,9 @@ class HillasParametersContainer(Container):
     skewness = Field(nan, 'measure of the asymmetry')
     kurtosis = Field(nan, 'measure of the tailedness')
 
+    asymmetry = Field(nan, 'distance between COG and the highest charge pixel')
+    conc = Field(nan, 'concentration ratio of the highest two pixels')
+    length_max = Field(nan, 'maximum length')
 
 class LeakageContainer(Container):
     """
@@ -620,7 +623,7 @@ class TimingParametersContainer(Container):
     intercept_err = Field(nan, 'Uncertainty `intercept`')
     deviation = Field(nan, 'Root-mean-square deviation of the pulse times '
                            'with respect to the predicted time')
-
+    time_std = Field(nan, 'standard deviation of pulse time')
 
 class FlatFieldContainer(Container):
     """

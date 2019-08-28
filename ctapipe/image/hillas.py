@@ -152,6 +152,18 @@ def hillas_parameters(geom, image):
     m4_long = np.average(longitudinal**4, weights=image)
     kurtosis_long = m4_long / length**4
 
+    highest_pix_id = np.argmax(image)
+    #delta_x_asym = delta_x[highest_pix_id]
+    #delta_y_asym = delta_y[highest_pix_id]
+    asymmetry = longitudinal[highest_pix_id]
+
+    image_sort = sorted(image, reverse=True)
+    conc2_sum = np.sum(image_sort[:2])
+    conc = conc2_sum/size
+
+    length_max = np.max(longitudinal) - np.min(longitudinal)
+    #width_max = 
+
     return HillasParametersContainer(
         x=u.Quantity(cog_x, unit),
         y=u.Quantity(cog_y, unit),
@@ -163,4 +175,7 @@ def hillas_parameters(geom, image):
         psi=Angle(psi, unit=u.rad),
         skewness=skewness_long,
         kurtosis=kurtosis_long,
+        asymmetry = asymmetry,
+        conc = conc,
+        length_max = length_max
     )

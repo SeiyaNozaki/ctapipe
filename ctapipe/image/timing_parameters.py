@@ -58,6 +58,7 @@ def timing_parameters(geom, image, pulse_time, hillas_parameters):
     deviation = np.sqrt(
         np.sum((pulse_time - predicted_time)**2) / pulse_time.size
     )
+    time_std = np.std(pulse_time)
 
     return TimingParametersContainer(
         slope=slope / unit,
@@ -65,4 +66,5 @@ def timing_parameters(geom, image, pulse_time, hillas_parameters):
         deviation=deviation,
         slope_err=slope_err,
         intercept_err=intercept_err,
+        time_std = time_std
     )
